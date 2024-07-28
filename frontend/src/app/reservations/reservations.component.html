@@ -1,0 +1,36 @@
+<div class="leftovers-table">
+    <!-- <h3 style="text-align: center; background-color:#fdba07; color: white;border-radius: 15px;height:28px">
+      All Reservations
+    </h3> -->
+    <table>
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>Reserved leftovers</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Time of Pickup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through all reservations and display in rows -->
+        <tr *ngFor="let reservation of tempReservations">
+          <ng-container *ngIf="isFutureDate(reservation.pickupdate)">
+          <td>{{ reservation.restaurant_username }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let leftover of reservation.leftovers">
+                {{ leftover.leftover_name }} ({{ leftover.leftover_type }}): {{ leftover.leftover_quantity }}
+              </li>
+            </ul>
+          </td>
+          <td>{{reservation.restaurant_city}},{{reservation.restaurant_address}}</td>
+          <td>{{ reservation.pickupdate | date }}</td>
+          <td>{{ reservation.pickuptime }}</td>
+        </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <app-footer></app-footer> -->
+  

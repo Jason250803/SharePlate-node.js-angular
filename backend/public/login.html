@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form onsubmit="loginUser(); return false;">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="hidden" id="account_id"> <!-- Hidden input field for account_id -->
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    // Function to handle user login
+    async function loginUser(username, password) {
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_name: username, password: password })
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                // Store session information in local storage
+                localStorage.setItem('account_id', responseData.account_id);
+                localStorage.setItem('role', responseData.role);
+                // Redirect based on user's role or any other logic
+                if (responseData.role === 2) {
+                    alert('Login successful as restaurant');
+                    window.location.href = '/addleftover.html'; // Redirect to addleftover.html for restaurant users
+                } else if (responseData.role === 1) {
+                    alert('Login successful as admin');
+                    window.location.href = '/users.html'; // Redirect to users.html for admin users
+                } else {
+                    alert('Login successful');
+                    // Handle other roles or scenarios here
+                }
+            } else {
+                const errorMessage = await response.text();
+                alert('Error logging in: ' + errorMessage);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while logging in');
+        }
+    }
+</script>
+</body>
+</html>

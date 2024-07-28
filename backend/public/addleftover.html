@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Leftovers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Restaurant Leftovers</h2>
+        
+        <!-- Form to add new leftover -->
+        <h3>Add New Leftover</h3>
+        <form id="leftoverForm" enctype="multipart/form-data">>
+            <!-- Your form fields here -->
+            <label for="type">Type:</label>
+            <select id="type" name="type">
+                <option value="meals">Meals</option>
+                <option value="hot_meals">Hot Meals</option>
+                <option value="salads">Salads</option>
+                <option value="sandwiches">Sandwiches</option>
+                <option value="snacks">Snacks</option>
+            </select><br><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" ><br><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" ><br><br>
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="date" id="expiry_date" name="expiry_date" ><br><br>
+            <label for="image">Image:</label>
+            <input type="file" id="leftover_image_path" name="leftover_image_path"><br><br>
+            <!-- Hidden field to store restaurant_id -->
+            <input type="hidden" id="restaurant_id" name="restaurant_id">
+            <input type="submit" value="Add Leftover">
+        </form>
+        
+        <!-- List of available leftovers -->
+        <h3>Available Leftovers</h3>
+        <ul id="leftoverList"></ul>
+    </div>
+
+    <script>
+        // Function to fetch and display available leftovers
+        async function fetchAndDisplayLeftovers() {
+            // Your code to fetch and display leftovers
+        }
+    
+        // Function to get restaurant_id from localStorage
+        function getRestaurantId() {
+            return localStorage.getItem('restaurant_id');
+        }
+    
+        // Function to set restaurant_id in localStorage
+        function setRestaurantId(restaurantId) {
+            localStorage.setItem('restaurant_id', restaurantId);
+        }
+    
+        document.getElementById("leftoverForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const form = event.target;
+            const formData = new FormData(form);
+            const imageInput = document.getElementById('leftover_image_path');
+            const imageFile = imageInput.files[0]; // Get the selected image file
+            if (imageFile) {
+                formData.append('leftover_image_path', imageFile);
+            }
+            console.log(imageFile);
+            
+            // Retrieve restaurant ID from the session
+            const restaurantId = getRestaurantId();
+        
+            // Set restaurant_id in the formData
+            formData.append('restaurant_id', restaurantId);
+            
+            try {  
+                const response = await fetch('http://localhost:3000/addleftover', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (response.ok) {
+                    alert('Leftover added successfully');
+                    form.reset(); // Clear the form fields after successful submission
+                    fetchAndDisplayLeftovers(); // Refresh the list of leftovers
+                } else {
+                    const errorMessage = await response.text();
+                    alert('Error: ' + errorMessage);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while adding the leftover');
+            }
+        });
+        
+        // Function to handle user login
+        async function loginUser(username, password) {
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_name: username, password: password })
+                });
+    
+                if (response.ok) {
+                    const userData = await response.json();
+                    setRestaurantId(userData.account_id); // Set restaurant_id in localStorage
+                    // Redirect or perform any other action upon successful login
+                } else {
+                    const errorMessage = await response.text();
+                    alert('Error: ' + errorMessage);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while logging in');
+            }
+        }
+    </script>
+    
+</body>
+</html>

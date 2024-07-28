@@ -1,0 +1,179 @@
+<body>
+ <!-- add-leftover.component.html -->
+<!-- <body>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+  <div id="main">
+    <div class="row">
+      <!-- <div id="side"> -->
+        <img src="./assets/addLeftover.jpg" height="500px" width="100%"
+        style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; margin-bottom: 0;">
+      </div>
+
+      <div id="form-div" class="col-md-6">
+        <h3>{{ isEditing ? 'Edit Leftover' : 'Add New Leftover' }}</h3>
+        <form #leftOverForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" name="type" [(ngModel)]="leftoverData['leftover_type']" 
+                    required #typeInput="ngModel" >
+              <option value="" disabled>Select Type</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Chicken">Chicken Meal</option>
+              <option value="Beef">Beef Meal</option>
+              <option value="Sandwiches">Sandwiches</option>
+              <option value="Desserts">Desserts</option>
+            </select>
+            <div *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error-message">
+              <div *ngIf="typeInput.errors?.['required']">Type is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" [(ngModel)]="leftoverData['leftover_name']" required
+                   pattern="[a-zA-Z\s]*" #nameInput="ngModel">
+            <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="error-message">
+              <div *ngIf="nameInput.errors?.['required']">Name is required.</div>
+              <div *ngIf="nameInput.errors?.['pattern']">Please enter letters and spaces only.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" [(ngModel)]="leftoverData.quantity" required
+                   min="1" #quantityInput="ngModel">
+            <div *ngIf="quantityInput.invalid && (quantityInput.dirty || quantityInput.touched)" class="error-message">
+              <div *ngIf="quantityInput.errors?.['required']">Quantity is required.</div>
+              <div *ngIf="quantityInput.errors?.['min']">Please enter a valid quantity.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="date" id="expiryDate" name="expiryDate" [(ngModel)]="leftoverData['expiry_date_formatted']"
+                   [min]="minExpiryDate" required #expiryDateInput="ngModel">
+            <div *ngIf="expiryDateInput.invalid && (expiryDateInput.dirty || expiryDateInput.touched)">
+              <div *ngIf="expiryDateInput.errors?.['required']" class="error-message">Expiry date is required.</div>
+              <div *ngIf="expiryDateInput.errors?.['min']" class="error-message">Expiry date must be on or after {{ minExpiryDate | date:'mediumDate' }}.</div>
+            </div>
+          </div>
+
+          <div class="form-group-file-input-group">
+            <label for="image">Image:</label>
+            <input type="file" id="leftover_image_path" name="leftover_image_path" (change)="onFileChange($event)" required>
+          </div>
+
+          <div class="button-container">
+            <button type="submit">{{ isEditing ? 'Edit Leftover' : 'Add Leftover' }}</button>
+            <button type="button" style="background-color: #fdba07;" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  <!-- </div> 
+</body> -->
+<!-- <app-footer></app-footer> -->
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+  <!-- <div id="main">
+    <div class="row">
+      <!-- <div id="side">
+        <img src="./assets/addLeftover.jpg" height="500px" width="100%"
+        style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; margin-bottom: 0;">
+      </div>
+
+      <div id="form-div" class="col-md-6">
+        <h3>{{ isEditing ? 'Edit Leftover' : 'Add New Leftover' }}</h3>
+        <form #leftOverForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" name="type" [(ngModel)]="leftoverData.type" 
+                    required #typeInput="ngModel">
+              <option value="" disabled>Select Type</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Chicken Meal">Chicken Meal</option>
+              <option value="Beef Meal">Beef Meal</option>
+              <option value="Sandwiches">Sandwiches</option>
+              <option value="Desserts">Desserts</option>
+            </select>
+            <div *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error-message">
+              <div *ngIf="typeInput.errors?.['required']">Type is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" [(ngModel)]="leftoverData.name" required
+                   pattern="[a-zA-Z\s]*" #nameInput="ngModel">
+            <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="error-message">
+              <div *ngIf="nameInput.errors?.['required']">Name is required.</div>
+              <div *ngIf="nameInput.errors?.['pattern']">Please enter letters and spaces only.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" [(ngModel)]="leftoverData.quantity" required
+                   min="1" #quantityInput="ngModel">
+            <div *ngIf="quantityInput.invalid && (quantityInput.dirty || quantityInput.touched)" class="error-message">
+              <div *ngIf="quantityInput.errors?.['required']">Quantity is required.</div>
+              <div *ngIf="quantityInput.errors?.['min']">Please enter a valid quantity.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="date" id="expiryDate" name="expiryDate" [(ngModel)]="leftoverData.expiry_date"
+                   [min]="minExpiryDate" required #expiryDateInput="ngModel">
+            <div *ngIf="expiryDateInput.invalid && (expiryDateInput.dirty || expiryDateInput.touched)">
+              <div *ngIf="expiryDateInput.errors?.['required']" class="error-message">Expiry date is required.</div>
+              <div *ngIf="expiryDateInput.errors?.['min']" class="error-message">Expiry date must be on or after {{ minExpiryDate | date:'mediumDate' }}.</div>
+            </div>
+          </div>
+
+          <div class="form-group-file-input-group">
+            <label for="image">Image:</label>
+            <input type="file" id="leftover_image_path" name="leftover_image_path" (change)="onFileChange($event)" required>
+          </div>
+
+          <div class="button-container">
+            <button type="submit">{{ isEditing ? 'Edit Leftover' : 'Add Leftover' }}</button>
+            <button type="button" style="background-color: #fdba07;" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+
+</body>
+
+
+ -->

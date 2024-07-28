@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+        .approve {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .approve:hover {
+            background-color: #45a049;
+        }
+
+        .delete {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete:hover {
+            background-color: #ff0000;
+        }
+
+        .deactivate {
+            background-color: #ff7300;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .deactivate:hover {
+            background-color: #ff7300;
+        }
+        .logout {
+            background-color: #001aff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .logout:hover {
+            background-color: #001aff;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Users</h2>
+
+    <script>
+        // Function to fetch users from server and populate the table
+        async function fetchUsers() {
+            const response = await fetch('/users');
+            const userData = await response.json();
+            const restaurantUsers = userData.restaurantUsers;
+            const organizationUsers = userData.organizationUsers;
+
+            populateUsersTable(restaurantUsers, 'Restaurant Users');
+            populateUsersTable(organizationUsers, 'Organization Users');
+        }
+
+        // Function to populate the users table
+        function populateUsersTable(users, tableTitle) {
+            const usersTable = document.createElement('table');
+            usersTable.innerHTML = `
+                <caption>${tableTitle}</caption>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Phone</th>
+                        <th>Country</th>
+                        <th>Logo</th>
+                        <th>License</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${users.map(user => `
+                        <tr>
+                            <td>${user.email}</td>
+                            <td>${user.status}</td>
+                            <td>${user.phone}</td>
+                            <td>${user.country}</td>
+                            <td><img src="/${user.logo_path}" style="width: 5rem;"></td>
+                            <td><img src="/${user.license_path}" style="width: 5rem;"></td>
+                            <td><button class="approve" onclick="approveUser(${user.account_id})">Approve</button>
+                                <button class="delete" onclick="deleteUser(${user.account_id})">Delete</button>
+                                <button class="deactivate" onclick="deactivateUser(${user.account_id})">Deactivate</button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            `;
+            
+            document.body.appendChild(usersTable);
+        }
+
+        // Function to approve a user
+        async function approveUser(userId) {
+            const response = await fetch(`/approve/${userId}`, {
+                method: 'PUT'
+            });
+
+            if (response.ok) {
+                // Reload the page to reflect the changes
+                location.reload();
+            } else {
+                alert('Error approving user');
+            }
+        }
+
+
+                // Function to deactivate a user
+                async function deactivateUser(userId) {
+                    const response = await fetch(`/deactivate/${userId}`, {
+                        method: 'PUT'
+                    });
+        
+                    if (response.ok) {
+                        // Reload the page to reflect the changes
+                        location.reload();
+                    } else {
+                        alert('Error Deactivating user');
+                    }
+                }
+
+
+                // Function to deactivate a user
+                async function deleteUser(userId) {
+                    const response = await fetch(`/delete/${userId}`, {
+                        method: 'PUT'
+                    });
+        
+                    if (response.ok) {
+                        // Reload the page to reflect the changes
+                        location.reload();
+                    } else {
+                        alert('Error Deleting user');
+                    }
+                }
+
+        // Function to handle logout
+        function logout() {
+            window.location.href = 'login.html'; // Redirect to login page
+        }
+
+        // Call fetchUsers() when the page loads
+        window.onload = fetchUsers;
+    </script>
+
+    <button class="logout" onclick="logout()">Logout</button>
+</body>
+</html>

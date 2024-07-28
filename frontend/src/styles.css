@@ -1,0 +1,32 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+/* @import "../node_modules/angular-calendar/css/angular-calendar.css"; */
+@import "~bootstrap-icons/font/bootstrap-icons.min.css";
+@font-face {
+    font-family: 'cinzel';
+    src: url("./assets/Cinzel-SemiBold.ttf") format("truetype");
+    font-weight: 900;
+}
+@font-face {
+    font-family:'quattrocento' ;
+    src: url("./assets/QuattrocentoSans-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'cinzelRegular';
+    src: url("./assets/Cinzel-Regular.ttf") format("truetype");
+}
+html,body{
+    background-color:hsl(240, 100%, 98%);
+    /* margin: 0px 0px 0px 0px; */
+        height: 100%;
+        margin: 0;
+}
+ button:hover{
+    cursor: pointer;
+ }
+ h1,h2,h3{
+    font-family: 'cinzel',sans-serif;
+ }
+ 
+  

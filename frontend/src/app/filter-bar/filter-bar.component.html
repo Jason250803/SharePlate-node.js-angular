@@ -1,0 +1,39 @@
+<div class="filter-bar">
+    <div class="titre" style="color: rgb(245, 255, 255); text-align: center;">
+        <h1 style="font-family: 'cinzelRegular',sans-serif;"> Hello Changemaker! </h1>
+    </div>
+    <div class="profile" *ngIf="profile">
+        <div style="justify-items: center;">
+            <img src="./assets/{{ profile.logo_path }}" height="80px" width="70px" style="border-radius: 50px;">
+        </div>
+        <div class="v-l" style="border: solid 0.1px white; background-color: white;"></div>
+        <div style="color:white">
+            <h3>{{profile.organization_username}}</h3>
+            {{profile.country}},{{profile.city}},{{profile.address}}
+        </div>
+    </div>
+</div>
+<div>
+    <form>
+
+      <div class="filter">
+        <div><label>FILTER BY:</label></div>
+        <div>
+          <input type="radio" id="none" name="myRadioGroup" [(ngModel)]="selectedOption" [value]="'none'">
+          <label for="none">None</label><br>
+        </div>
+        <div>
+          <input type="radio" id="bytype" name="myRadioGroup" [(ngModel)]="selectedOption" [value]="'bytype'">
+          <label for="bytype"> By Type</label><br>
+        </div>
+        <div>
+          <input type="radio" id="byrestaurant" name="myRadioGroup" [(ngModel)]="selectedOption"
+            [value]="'byrestaurant'">
+          <label for="byrestaurant">By Restaurant</label><br>
+        </div>
+
+
+      </div>
+
+    </form>
+  </div>

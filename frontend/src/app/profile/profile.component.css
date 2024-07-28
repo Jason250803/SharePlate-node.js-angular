@@ -1,0 +1,244 @@
+/* profile.component.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    /* background: linear-gradient(135deg, #007bff, #0056b3); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* margin: 20px; */
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    /* padding: 10px; */
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+    width: 100%;
+    height: auto;
+    /* background: linear-gradient(135deg, #ffffff, #e6e6e6); */
+  }
+  .left-container {
+    background: linear-gradient(to left,#157fbe,#024a74);
+    background-color: white;
+    flex: 1;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:430px;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .left-container p {
+    color:white;
+  }
+  
+  .right-container {
+    /* background: linear-gradient(to right, white, #157fbe); */
+    background-color: white;
+    flex: 1;
+    max-width:70%;
+    height:430px;
+    padding: 10px;
+    margin: 30px;
+    border-radius:20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  img {
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  h2 {
+    text-align: center;
+    /* font-size: 24px; */
+    margin-bottom: 5px;
+    /* color: #157fbe;  */
+    background-color: #157fbe;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+  }
+ .right-container p {
+    font-size: 18px;
+    margin: 20px;
+    /* color:rgb(63, 144, 216); */
+    color:#157fbe;
+    line-height: 7.5px;
+  }
+
+  table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 280px;
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+  }
+  
+  td:first-child {
+    font-weight: bold;
+  }
+  
+  .buttonContainer{
+  text-align: center;
+  margin-top: 10px;
+  }
+  
+  .edit{  
+    width: 20%; 
+    color: white;
+    text-align: center;
+    background-color: #fdba07;
+    border-radius:8px;
+    border: none;
+    margin-left: 270px ;
+    padding: 8px;
+  }
+  
+  /* profile.component.css */
+  
+  /* Form container */
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:white;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  /* Form title */
+  .form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #157fbe;
+    color: white;
+    border-radius: 10px;
+    margin-top: -5px;
+    width:100%;
+  }
+  
+  /* Form input fields */
+  .form-group {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 15px;
+    
+  }
+  
+  .form-group label {
+    flex: 0 0 150px; /* Set fixed width for labels */
+    font-weight: bold;
+    margin-right: 10px; /* Add some space between label and input */
+    color: #157fbe;
+  }
+  
+  .form-group input {
+    flex: 1; /* Allow input fields to grow */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 5px;
+  }
+  
+  /* profile.component.css */
+  
+  /* Adjustments for phone code and phone number */
+  .phone-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .phone-container select {
+    flex: 0 0 100px; /* Adjust width for phone code dropdown */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px; /* Add some space between dropdown and input */
+  }
+  
+  .phone-container input {
+    flex: 1; /* Allow input field to grow */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .form-group select {
+    width: calc(100% - 160px); /* Adjust width to match other input fields */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  /* Error message */
+  .error-message {
+    color: #f00;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Buttons */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .button-container button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    /* border-radius: 8px; */
+    /* background-color: #157fbe; */
+
+    /* cursor: pointer; */
+    
+  }
+  
+  .cancel {
+    width: 30%;
+    color: white;
+    text-align: center;
+    background-color:#fdba07;
+    border-radius: 7px;
+    border: none;
+    padding: 8px;
+    
+  }
+  
+  .save{
+    width: 30%; 
+    color: white;
+    text-align: center;
+    background-color: #157fbe;
+    border: none;
+    padding: 8px;
+    border-radius:7px ;
+    margin-right: 50px;
+    margin-left: 50px;
+  }

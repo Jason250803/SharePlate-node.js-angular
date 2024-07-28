@@ -1,0 +1,129 @@
+.leftovers-big-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.leftover {
+    z-index: 2;
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    /* margin-left: 20px; */
+}
+
+.leftover img {
+    height: 120px;
+    width: 140px;
+    border: none;
+    border-radius: 8px;
+    z-index: 2;
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn button {
+    font-size: small;
+    color: white;
+    height: 30px;
+    width: 130px;
+    /* padding: 10px; */
+    background-color: #157fbe;
+    border: #157fbe 1.5px solid;
+    margin-bottom: 8%;
+    border-radius: 8px;
+}
+
+.btn button:hover {
+    background-color: #157fbe;
+    color: white;
+
+} 
+
+.title {
+    font-family: 'quattrocento', sans-serif;
+    font-weight: bold;
+    color: #157fbe;
+    /* color: black; */
+
+}
+
+.no-leftover-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
+
+ .quantity {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 6rem;
+    justify-content: center;
+}
+
+#btn_dec {
+    border: none;
+    width: 33.33333%;
+    height: 1.75rem;
+    font-size: medium;
+    background-color: white;
+    color:#fdba07;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid #ccc;
+    /* color: white; */
+}
+
+#btn_dec:hover{
+    background-color: #fdba07;
+    color:white;
+}
+
+input[type='number'] {
+    width: 33.33333%;
+    height: 1.75rem;
+    text-align: center;
+    font-size: medium;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} 
+
+ input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#btn_inc {
+    border: none;
+    width: 33.33333%;
+    height: 1.75rem;
+    font-size: medium;
+    color: #157fbe;
+    background-color:white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #ccc;
+    
+    /* color: white; */
+} 
+
+#btn_inc:hover{
+    background-color: #157fbe;
+    color:white;
+}
+

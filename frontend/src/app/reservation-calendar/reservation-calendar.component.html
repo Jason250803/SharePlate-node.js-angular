@@ -1,0 +1,89 @@
+<body style="width:95%;margin-left: auto;margin-right: auto;">
+  <div class="calendar-container">
+    <p-calendar [(ngModel)]="selectedDate" [inline]="true" [showButtonBar]="true"
+      (onSelect)="onDateSelect($event)"></p-calendar>
+  </div>
+  <div *ngIf="selectedDate">
+    <div *ngIf="showTableReservation">
+      <!-- Existing table for reservations... -->
+    </div>
+    <div *ngIf="!showTableReservation">
+      <p class="no-reservations">{{ noReservationsMessage }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="selectedDate && showTableReservation">
+    <h3 style="text-align: center; background-color:#fdba07; color: white;border-radius: 15px;height:28px">
+      Reservations for {{ selectedDate | date }}
+    </h3>
+    <!-- Display reservation details in a table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Type</th>
+          <th>Quantity</th>
+          <th>Time of Pickup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through reservation data and display in rows -->
+        <tr *ngFor="let reservation of reservations">
+          <ng-container *ngIf="isFutureDate(reservation.pickupdate)">
+            <td>{{ reservation.organization_username }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let leftover of reservation.leftovers">
+                  {{ leftover.leftover_name }} ({{ leftover.leftover_type }}): {{ leftover.leftover_quantity }}
+                </li>
+              </ul>
+            </td>
+            <td>{{ getTotalQuantity(reservation.leftovers) }}</td>
+            <td>{{ reservation.pickuptime }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Table for all reservations -->
+  <div class="leftovers-table">
+    <h3 style="text-align: center; background-color:#fdba07; color: white;border-radius: 15px;height:28px">
+      All Reservations
+    </h3>
+    <div *ngIf="reservations.length>0 ; else noReservations">
+      <table>
+        <thead>
+          <tr>
+            <th>Organization</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Time of Pickup</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through all reservations and display in rows -->
+          <tr *ngFor="let reservation of tempReservations">
+            <td>{{ reservation.organization_username }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let leftover of reservation.leftovers">
+                  {{ leftover.leftover_name }} ({{ leftover.leftover_type }}): {{ leftover.leftover_quantity }}
+                </li>
+              </ul>
+            </td>
+            <td>{{ getTotalQuantity(reservation.leftovers) }}</td>
+            <td>{{ reservation.pickupdate | date }}</td>
+            <td>{{ reservation.pickuptime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noReservations>
+      <div class="no-reservation-container" style="text-align: center;color:#555">
+        <p class="no-reservation-message">No Reservations yet.</p>
+      </div>
+    </ng-template>
+  </div>
+</body>

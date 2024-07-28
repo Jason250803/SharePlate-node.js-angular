@@ -1,0 +1,108 @@
+<div class="container" style=" height:500px;display: flex;position: fixed left; margin-left:2%">
+    <div class="slogan">
+        <p class="test">TRANSFORMING <span style="color:#fdba07;"> LEFTOVERS</span> <br> INTO OPPROTUNITIES
+        </p>
+    </div>
+    <div class="numbers" *ngIf="counts">
+        <div class="restNb">
+            <p>{{counts.totalRestaurants}}<br>Restaurants</p>
+        </div>
+        <div class="orgNb">
+            <p>{{counts.totalOrganizations}} <br> Organizations</p>
+        </div>
+        <div class="leftNb">
+            <p>{{counts.totalLeftovers}} <br> Leftovers</p>
+        </div>
+    </div>
+
+   
+</div>
+<div>
+<h1 style="margin-top: 3%; background-color: #fdba07;border-radius: 15px;color: white; text-align: center;"> LEADERBOARD</h1>
+<div class="top-three-container">
+   
+    <div class="item" *ngFor="let item of top3 let i=index">
+        <h2 style="background-color: #157fbe; color: white; border-radius: 15px;">Top {{ i + 1 }}</h2>
+      <img src="./assets/{{ item.logo_path}}" style="height: 150px; width: 150px;">
+      
+      <h3>{{ item.restaurant_name }}</h3>
+      <p>{{ item.total_reserved_quantity}} portions</p>
+    </div>
+  </div>
+</div>
+<!-- carte  -->
+
+<!-- <h1 style="padding-left: 10px;color: #157fbe;">Cart</h1>
+<hr style="border:none;height: 2px;background-color: #157fbe;">
+<div class="carte" style="margin-bottom: 50px; display: flex; flex-direction: row;justify-content: space-between;">
+
+
+
+    <div class="cart-items"
+        style="width: 65%;display: flex; flex-direction: row; padding-left: 10px; padding-right: 10px;justify-content: space-between;">
+        <div class="left-container" style="display: flex; flex-direction: row;">
+
+            <div class="leftover-img">
+                <img src="./assets/chicken_sandwish.jpeg" height="100px" width="100px" style="border-radius: 15px;">
+            </div>
+
+            <div class="leftover-description" style="margin-top: auto;margin-bottom:auto;margin-left: 20px;">
+                <p><span>chicken Sandwish</span><br>
+                    <span>From Rawand </span><br>
+                    <span>Located in Lebanon/tripoli/hjgfd</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="right-container" style="display: flex; flex-direction: row; margin-top: auto;margin-bottom: auto;">
+            <form>
+
+                <div class="quantity">
+                    <button id='btn_dec' (click)="decrement()">-</button>
+                    <input type="number" id="quantity" [value]="quantity" (input)="updateQuantity($event)">
+                    <button id='btn_inc' (click)="increment()">+</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div style="margin-top: auto;margin-bottom: auto;">
+            <button name="remove" style=" font-size: small;
+        color: white;
+        height: 1.75rem;
+        width: 100px;
+        background-color: #fdba07;
+        margin-left: 20px;
+        border: none;
+        margin-bottom: 8%;
+        border-radius: 6.5px;">Remove</button>
+        </div>
+        
+    </div>
+    <div class="vertical-line" style="width: 1px;background-color: white;"></div>
+
+    <div class="summary" style="background-color:#157fbe; width: 35%;text-align: center;color: white;">
+        <h2 style="background-color: #fdba07;margin-top: 0;">Summary</h2>
+        <div class="restaurant">
+            <h3 style="margin-bottom: 0;">restaurant name</h3>
+            <div style="font-size: small;">Lebanon-Tripoli-minastreet... </div>
+            <div class="rest-items" style="display: flex;flex-direction: row;justify-content: space-evenly;">
+                <div>
+                    leftover name
+                </div>
+                <div>
+                    qtity
+                </div>
+            </div>
+           
+
+        </div>
+
+    </div>
+</div> -->
+<!-- <hr> -->
+
+
+<!-- </div> -->
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+button {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.iti__country-list{
+    max-width: 24rem;
+}
+/* Style for input file button */
+.custom-file-input {
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-file-input:hover {
+    background-color: #0056b3;
+  }
+  
+  .custom-file-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+  }
+.profileImage{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}  
+.logoImage{
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
+.licenseImage{
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
+.address{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-radius: 5px;
+    height: 100px; /* Set the height as per your requirement */
+    resize: vertical; /* Allow vertical resizing */
+}
+.country{
+    width: 96%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-radius: 5px;
+    height: 39px;
+}

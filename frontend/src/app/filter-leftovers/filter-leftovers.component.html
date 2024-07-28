@@ -1,0 +1,102 @@
+<div *ngIf="filterSession[1]==='ByType'">
+
+  <!-- <button (click)="showNotification()">Show Notification</button> -->
+
+  <div *ngIf="typeLeftovers && typeLeftovers.length>0; else noLeftovers">
+   
+    <div class="leftovers-big-container">
+      <div class="leftover" *ngFor="let leftover of typeLeftovers">
+        
+        <div class="picture" style=" transform: translate(0%, -20%) ; ">
+          <img src="./assets/{{leftover.leftover_image_path }}">
+
+
+        </div>
+        <div style="margin-top: -20%;">
+      
+          <p><span class="title">Name:</span><span class="desc"> {{ leftover.name }}</span></p>
+          <!-- <p><span class="title">Restaurant:</span><span class="desc">{{ leftover. }}</span></p>  -->
+          <p><span class="title">Expiry-date:</span><span class="desc">{{ leftover.expiry_date | date: 'mediumDate' }}
+            </span></p>
+
+          <p><span class="title">Available Qunatity:</span><span class="desc">{{ leftover.quantity }}</span></p>
+          <div class="quantity">
+            <form (ngSubmit)="addLeftover(leftover.quantity,leftover.leftover_id)">
+
+              <button id='btn_dec' type="button" (click)="decrement(leftover.leftover_id)">-</button>
+              <input type="number" id="quantity" [value]="quantities[leftover.leftover_id]" (input)="updateQuantity($event,leftover.leftover_id)">
+              <button id='btn_inc' type="button" (click)="increment(leftover.quantity,leftover.leftover_id)">+</button>
+
+              <hr style="color: grey;">
+              <div class="btn">
+                <button type="submit">Add Leftover</button>
+              </div>
+            </form>
+           
+          </div>
+
+        </div>
+        
+
+      </div>
+      <div *ngIf="shownotification" class="notification" style="margin-top: 10%;">{{notification}}</div>
+     
+    </div>
+  </div>
+  
+  <ng-template #noLeftovers>
+    <div class="no-leftover-container">
+      <p style="font-size: 16px;color: #555;">Sorry, no leftovers of type {{filterSession[0]}} available rightnow.</p>
+      <button (click)="backToTypes()" style="color:#157fbe;background-color: white;border-radius: 8px;
+  font-weight: bold;border: #157fbe 1px solid;">Check other types</button>
+    </div>
+
+  </ng-template>
+</div>
+
+
+
+
+<div *ngIf="filterSession[1]==='byRestaurant'">
+  <div *ngIf="restaurantLeftovers && restaurantLeftovers.length>0 ; else norestLeftovers">
+    <div class="leftovers-big-container">
+      <div class="leftover" *ngFor="let leftover of restaurantLeftovers">
+        <div class="picture" style=" transform: translate(0%, -20%) ; ">
+          <img src="./assets/{{leftover.leftover_image_path }}">
+        </div>
+        <div style="margin-top: -20%;">
+          <p><span class="title">Name:</span><span class="desc"> {{ leftover.name }}</span></p>
+          <p><span class="title">Expiry-date:</span><span class="desc">{{ leftover.expiry_date | date: 'mediumDate' }}
+            </span></p>
+
+          <p><span class="title">Available Qunatity:</span><span class="desc">{{ leftover.quantity }}</span></p>
+          <div class="quantity">
+            <form (ngSubmit)="addLeftover(leftover.quantity,leftover.leftover_id)">
+
+              <button id='btn_dec' type="button" (click)="decrement(leftover.leftover_id)">-</button>
+              <input type="number" id="quantity" [value]="quantities[leftover.leftover_id]" (input)="updateQuantity($event,leftover.leftover_id)">
+              <button id='btn_inc' type="button" (click)="increment(leftover.quantity,leftover.leftover_id)">+</button>
+
+              <hr style="color: grey;">
+              <div class="btn">
+                <button type="submit">Add Leftover</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- </div> -->
+  <ng-template #norestLeftovers>
+    <div class="no-leftover-container">
+      <p style="font-size: 16px;color: #555;">Sorry, no leftovers available rightnow.</p>
+      <button (click)="backToRestaurant()" style="color:#157fbe;background-color: white;border-radius: 8px;
+  font-weight: bold;border: #157fbe 1px solid;">Check other restaurants</button>
+    </div>
+
+  </ng-template>
+</div>

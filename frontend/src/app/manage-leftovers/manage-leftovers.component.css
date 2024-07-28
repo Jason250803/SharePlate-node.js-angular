@@ -1,0 +1,91 @@
+.view-leftovers-container {
+    margin: 0;
+}
+
+.view-leftovers-wrapper {
+    background-color: #157fbe;
+    padding: 10px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    text-align: center;    
+    color: white;
+}
+
+h2 {
+    font-size: 25px;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th
+{
+    color: #157fbe;
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: white;
+}
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* tr:hover {
+    background-color: #ddd;
+} */
+
+button {
+    padding: 8px 16px;
+    color: white   ;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit{
+    color: white ;
+    background-color: #fdba07;
+}
+
+.delete{
+    color:white;
+    background-color: #157fbe;
+}
+
+/* .edit:hover{
+    background-color: #a88114;
+} */
+
+.delete:hover{
+    background-color: #1f597a ;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort-button {
+    background-color: transparent;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sort-button:hover {
+    color: #666;
+}

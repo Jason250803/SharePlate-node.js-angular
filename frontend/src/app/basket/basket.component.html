@@ -1,0 +1,224 @@
+<div class="carte" style="margin-top:2%;margin-bottom: 50px;">
+  <ng-container *ngIf="!isCartEmpty; else noItems">
+  <ng-container *ngFor="let restaurantName of groupedCartItems | keys">
+    <div>
+      <h2>{{ restaurantName }}</h2>
+    </div>
+    <div class="restaurant-section">
+      <div class="rest_items">
+        <div class="cart-items" *ngFor="let item of groupedCartItems[restaurantName]">
+          <div class="left-container" style="display: flex; flex-direction: row;">
+            <div class="leftover-img">
+              <img [src]="'/assets/'+item.leftover_image_path" height="100px" width="100px" style="border-radius: 15px;">
+            </div>
+            <div class="leftover-description" style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
+              <p>
+                <span>{{ item.name }}</span><br>
+                <span>From {{ item.user_name }}</span><br>
+                <span>Located in {{ item.address }}</span><br>
+                <span style="background-color:#fdba07; border-radius: 10px;">Expiry Date: {{ item.expiry_date | date }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="right-container" style="display: flex; flex-direction: row; margin-top: auto; margin-bottom: auto;">
+            <div class="quantity">
+              <button id="btn_dec" (click)="decrement(item.basket_item_id)">-</button>
+              <input type="number" id="quantity" [(ngModel)]="quantities[item.basket_item_id]" (input)="updateQuantity($event, item.basket_item_id)">
+              <button id="btn_inc" (click)="increment(item.basket_item_id)">+</button>
+            </div>
+          </div>
+          <div class="btn" style="align-self: center; margin-top: 2%; margin-right: 3%; display: flex; flex-direction: row;">
+            <button (click)="removeItem(item.basket_item_id)">Remove</button>
+            <button (click)="saveChanges(item.basket_item_id)" style="background-color: #157fbe;">Save Changes</button>
+          </div>
+        </div>
+      </div>
+      <div class="date-time-inputs" style="align-self: center; border:#157fbe solid 2px; box-shadow: 3px 5px 4px rgba(0,0,0,0.2);">
+        <label>Date:</label>
+        <input type="date" [(ngModel)]="selectedDate[restaurantName]" [min]="minDate" [max]="maxDates[restaurantName]">
+        <label>Time:</label>
+        <input type="time" [(ngModel)]="selectedTime[restaurantName]">
+      </div>
+    </div>
+    <hr> 
+  </ng-container>
+ 
+
+
+<button id="confirm" (click)="confirmCart()">Confirm Cart</button>
+
+</ng-container>
+</div>
+
+
+<ng-template #noItems>
+  <div class="no-Items-container">
+    <p class="no-Items-message">No leftovers in the basket,<br>Add new leftovers.</p>
+    <button (click)="backToViewLeftovers()" style="height:40px; width:40px; font-size: large;background-color:#fdba07; color: white; border-radius: 50%; border: none;">+</button>
+  </div>
+</ng-template>
+
+
+
+
+
+
+<!-- <h1 style="padding-left: 10px;color: #157fbe;">Cart</h1> -->
+<!-- <hr style="border:none;height: 2px;background-color: #157fbe;"> -->
+<!-- <div class="carte" style="background-color: aqua;margin-top: 5%;margin-bottom: 50px; display: flex; flex-direction:column;justify-content: space-between;"> -->
+<!-- <div class="basket" *ngIf="basketLeftovers && basketLeftovers.length>0 ; else noItems"> -->
+<!-- <div *ngFor="let leftover of basketLeftovers"> -->
+
+
+<!-- <div class="cart-items" *ngFor="let leftover of basketLeftovers">
+        <!-- First cart item content -->
+
+<!-- <div class="cart-items" style="background-color: bisque;"> 
+        <div class="left-container" style="display: flex; flex-direction: row;">
+
+            <div class="leftover-img">
+                <img src="./assets/{{leftover.leftover_image_path}}" height="100px" width="100px"
+                    style="border-radius: 15px;">
+            </div>
+
+            <div class="leftover-description" style="margin-top: auto;margin-bottom:auto;margin-left: 20px;">
+                <p><span>{{leftover.name}}</span><br>
+                    <span>From {{leftover.user_name}}</span><br>
+                    <span>Located {{leftover.city}}, {{leftover.address}}</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="right-container" style="display: flex; flex-direction: row; margin-top: auto;margin-bottom: auto;">
+            <form>
+
+                <button id='btn_dec' type="button" (click)="decrement(leftover.leftover_id)">-</button>
+                <input type="number" id="quantity" [value]="quantities[leftover.leftover_id]"
+                    (input)="updateQuantity($event,leftover.leftover_id)">
+                <button id='btn_inc' type="button"
+                    (click)="increment(leftover.quantity,leftover.leftover_id)">+</button>
+
+            </form>
+        </div>
+
+        <div class="btn" style="margin-top: auto;margin-bottom: auto;margin-right: 3%;">
+            <button name="remove" style="background-color: #EA4335;">Remove</button>
+            <button name="save" (click)="editQuantity(leftover.basket_item_id,quantities[leftover.leftover_id])">Save
+                Changes</button>
+        </div>
+    </div>
+</div>-->
+
+<!-- <div class="carte" style="margin-top:2%;margin-bottom: 50px;">
+  <ng-container *ngFor="let restaurantName of groupedCartItems|keys">
+   <div><h2>{{ restaurantName }}</h2></div> 
+    <div class="restaurant-section">
+     
+       Input fields for date and time 
+     <div class="rest_items">
+      <div class="cart-items" *ngFor="let item of groupedCartItems[restaurantName]">
+         Display item details 
+        <div class="left-container" style="display: flex; flex-direction: row;">
+          <div class="leftover-img">
+            <img [src]="'/assets/'+item.leftover_image_path" height="100px" width="100px" style="border-radius: 15px;">
+          </div>
+          <div class="leftover-description" style="margin-top: auto;margin-bottom:auto;margin-left: 20px;">
+            <p><span>{{ item.name }}</span><br>
+              <span>From {{ item.user_name }}</span><br>
+              <span>Located in {{ item.address }}</span>
+            </p>
+          </div>
+        </div>
+        <div class="right-container" style="display: flex; flex-direction: row; margin-top: auto;margin-bottom: auto;">
+          <div class="quantity">
+            <button id="btn_dec" (click)="decrement(item.basket_item_id)">-</button>
+            <input type="number" id="quantity" [(ngModel)]="quantities[item.basket_item_id]" (input)="updateQuantity($event,item.basket_item_id)">
+            <button id="btn_inc" (click)="increment(item.bquantity,item.basket_item_id)">+ {{item.bquantity}}</button>
+          </div>
+        </div>
+        <div class="btn" style="align-self: center;margin-top: 2%;margin-right: 3%;display: flex;flex-direction: row;">
+          <button (click)="removeItem(item.basket_item_id)">Remove</button>
+          <button (click)="saveChanges(item)" style="background-color: #157fbe;">Save Changes</button>
+        </div>
+      </div>
+
+      </div>
+      <div class="date-time-inputs" style="align-self: center;border:#157fbe solid 2px; box-shadow: 3px 5px 4px rgba(0,0,0,0.2);">
+        <label>Date:</label>
+        <input type="date" [(ngModel)]="selectedDate[restaurantName]">
+        <label>Time:</label>
+        <input type="time" [(ngModel)]="selectedTime[restaurantName]">
+      </div>
+    </div>
+    <hr> 
+  </ng-container>
+</div>
+
+<button id="confirm" (click)="confirmCart()">Confirm Cart</button>
+<ng-template #noItems>
+  <div class="no-Items-container">
+    <p class="no-Items-message">No added leftovers yet.</p>
+    <button (click)="backToViewLeftovers()"
+      style="height:30px;width:30px;background-color:#fdba07;color: white;border-radius: 50%;border: none;">+</button>
+  </div>
+</ng-template> -->
+
+
+<!-- <div class="cart-items">
+        <div class="left-container" style="display: flex; flex-direction: row;">
+
+            <div class="leftover-img">
+                <img src="./assets/chicken_sandwish.jpeg" height="100px" width="100px" style="border-radius: 15px;">
+            </div>
+
+            <div class="leftover-description" style="margin-top: auto;margin-bottom:auto;margin-left: 20px;">
+                <p><span>chicken Sandwish</span><br>
+                    <span>From Rawand </span><br>
+                    <span>Located in Lebanon/tripoli/hjgfd</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="right-container" style="display: flex; flex-direction: row; margin-top: auto;margin-bottom: auto;">
+            <form>
+
+                <div class="quantity">
+                    <button id='btn_dec' (click)="decrement()">-</button>
+                    <input type="number" id="quantity" [value]="quantity" (input)="updateQuantity($event)">
+                    <button id='btn_inc' (click)="increment()">+</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="btn" style="margin-top: auto;margin-bottom: auto;margin-right: 3%;">
+            <button name="remove">Remove</button>
+        </div>
+
+
+
+    </div>
+
+</div>
+ <div class="vertical-line" style="width: 1px;background-color: white;"></div> -->
+
+<!-- <div class="summary" style="background-color:#157fbe; width: 35%;text-align: center;color: white;">
+        <h2 style="background-color: #fdba07;margin-top: 0;">Summary</h2>
+        <div class="restaurant">
+            <h3 style="margin-bottom: 0;">restaurant name</h3>
+            <div style="font-size: small;">Lebanon-Tripoli-minastreet... </div>
+            <div class="rest-items" style="display: flex;flex-direction: row;justify-content: space-evenly;">
+                <div>
+                    leftover name
+                </div>
+                <div>
+                    qtity
+                </div>
+            </div>
+
+
+        </div>
+
+    </div> -->

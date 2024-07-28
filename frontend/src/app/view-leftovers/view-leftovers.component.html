@@ -1,0 +1,263 @@
+<div class="filter-bar">
+  <div class="titre" style="color: rgb(245, 255, 255); text-align: center;">
+    <h1 style="font-family: 'cinzelRegular',sans-serif;"> Hello Changemaker! </h1>
+  </div>
+
+  <div class="profile" *ngIf="profile">
+    <div style="justify-items: center;">
+      <img src="./assets/{{ profile.logo_path }}" height="80px" width="85px" style="border-radius: 50px;">
+    </div>
+    <!-- <div class="v-l" style="border: solid 0.1px white; background-color: white;"></div> -->
+    <div style="color:white">
+      <h3>{{profile.organization_username}}</h3>
+      <p style="margin-top: -10px;">{{profile.country}},{{profile.city}},{{profile.address}}</p>
+    </div>
+  </div>
+
+  <div>
+    <form>
+
+      <div class="filter">
+        <div><label>FILTER BY:</label></div>
+        <div>
+          <input type="radio" id="none" name="myRadioGroup" [(ngModel)]="selectedOption" [value]="'none'">
+          <label for="none">None</label><br>
+        </div>
+        <div>
+          <input type="radio" id="bytype" name="myRadioGroup" [(ngModel)]="selectedOption" [value]="'bytype'">
+          <label for="bytype"> Type</label><br>
+        </div>
+        <div>
+          <input type="radio" id="byrestaurant" name="myRadioGroup" [(ngModel)]="selectedOption"
+            [value]="'byrestaurant'">
+          <label for="byrestaurant"> Restaurant</label><br>
+        </div>
+
+
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+
+<!-- <div *ngIf="leftovers && leftovers.length > 0; else noLeftovers">  -->
+<div *ngIf="selectedOption === 'none'">
+  <div *ngIf="leftovers && leftovers.length > 0; else noLeftovers"> 
+  <div class="leftovers-big-container">
+    <div class="leftover" *ngFor="let leftover of leftovers">
+      <div class="picture" style=" transform: translate(0%, -20%) ; ">
+        <img src="./assets/{{leftover.leftover_image_path }}">
+
+
+      </div>
+      <div style="margin-top: -20%;">
+        <p><span class="title">Name:</span><span class="desc"> {{ leftover.name }}</span></p>
+        <!-- <p><span class="title">Restaurant:</span><span class="desc">{{ leftover. }}</span></p>  -->
+        <p><span class="title">Expiry-date:</span><span class="desc">{{ leftover.expiry_date | date: 'mediumDate' }}
+          </span></p>
+
+        <p><span class="title">Available Qunatity:</span><span class="desc">{{ leftover.quantity }}</span></p>
+        <div class="quantity">
+          <form (ngSubmit)="addLeftover(leftover.quantity,leftover.leftover_id)">
+
+            <button id='btn_dec' type="button" (click)="decrement(leftover.leftover_id)">-</button>
+            <input type="number" id="quantity" [value]="quantities[leftover.leftover_id]"
+              (input)="updateQuantity($event,leftover.leftover_id)">
+            <button id='btn_inc' type="button" (click)="increment(leftover.quantity,leftover.leftover_id)">+</button>
+
+            <hr style="color: grey;">
+            <div class="btn">
+              <button type="submit">Add Leftover</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ng-template #noLeftovers>
+  <p style="font-size: 16px;color: #555; text-align: center;">No leftovers available.</p>
+</ng-template>
+
+
+<div class="types-big-container" *ngIf="selectedOption === 'bytype'">
+  <div class="type-container" id="types" *ngFor="let type of types ">
+
+    <!-- <div class="type-picture" style="transform: translate(-50%,-5%);background-color: #fdba07;"> -->
+    <div class="type-picture">
+      <!-- <img id="type.name" src="{{type.img_path}}"
+        style="transform: translate(0%,0%);height: 140px; width: 110px;background-color: bisque;"> -->
+      <img id="{{type.name}}" src="{{type.img_path}}">
+    </div>
+    <div>
+      <p style="line-height: 10px;">
+        <span class="type-title">
+          <h2 style="color: #157fbe;" id="{{type.itemsid}}">{{type.name}}</h2>
+        </span>
+        <span class="items-nb" style="color: gray;">{{type.itemsnb}}</span>
+      </p>
+    </div>
+    <div>
+      <!-- <button name="go-type" style="transform: translate(100%,0%);">&gt;</button> -->
+      <button name="go-type" id="btn{{type.name}}" (click)="goToType(type.name)">&gt;</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- <div class="type-container">
+
+    <div class="type-picture">
+      <img src="./assets/types/beeftype.png" style="transform: translate(-45%,0%);height: 140px; width: 110px;">
+    </div>
+    <div>
+      <p style="line-height: 10px;">
+        <span class="type-title">
+          <h1 style="color: #157fbe;">Beef </h1>
+        </span>
+        <span class="items-nb" style="color: gray;"> 44 items</span>
+      </p>
+    </div>
+    <div>
+      <button name="go-type" style="transform: translate(135%,0%); ">&gt;</button>
+    </div>
+
+  </div>
+
+
+  <div class="type-container">
+
+    <div class="type-picture" style="transform: translate(-100%,-5%);">
+      <img src="./assets/types/chickentype.png" style="transform: translate(60%,3%);height: 100px; width: 100px;">
+    </div>
+    <div>
+      <p style="line-height: 10px;">
+        <span class="type-title">
+          <h1 style="color: #157fbe;">Chicken </h1>
+        </span>
+        <span class="items-nb" style="color: gray;"> 44 items</span>
+      </p>
+    </div>
+    <div>
+      <button name="go-type" style="transform: translate(32%,0%);">&gt;</button>
+    </div>
+
+  </div>
+
+
+
+  <div class="type-container">
+
+    <div class="type-picture" style="transform: translate(-50%,-5%);">
+      <img src="./assets/types/pizzatype.png" style="transform: translate(0%,4%);height: 130px; width: 110px;">
+    </div>
+    <div>
+      <p style="line-height: 10px;">
+        <span class="type-title">
+          <h1 style="color: #157fbe;">Pizza</h1>
+        </span>
+        <span class="items-nb" style="color: gray;"> 44 items</span>
+      </p>
+    </div>
+    <div>
+      <button name="go-type" style="transform: translate(95%,0%);">&gt;</button>
+    </div>
+
+  </div>
+
+
+  <div class="type-container">
+
+    <div class="type-picture" style="transform: translate(-145%,0%);">
+      <img src="./assets/types/sandwichtype.png" style="transform: translate(105%,0%);height: 100px; width: 110px;">
+    </div>
+    <div>
+      <p style="line-height: 10px; margin-left: -40px;">
+        <span class="type-title">
+          <h1 style="color: #157fbe;">Sandwiches</h1>
+        </span>
+        <span class="items-nb" style="color: gray;"> 44 items</span>
+      </p>
+    </div>
+    <div>
+      <button name="go-type">&gt;</button>
+    </div>
+
+  </div>
+
+
+  <div class="type-container">
+
+    <div class="type-picture" style="transform: translate(-50%,-5%);">
+      <img src="./assets/types/desserttype.png" style="transform: translate(15%,8%);height: 135px; width: 180px;">
+    </div>
+    <div>
+      <p style="line-height: 10px; text-align: left;">
+        <span class="type-title">
+          <h1 style="color: #157fbe;margin-left: -100px">Desserts</h1>
+        </span>
+        <span class="items-nb" style="color: gray;margin-left: -100px;"> 44 items</span>
+      </p>
+    </div>
+    <div>
+      <button name="go-type" style="transform: translate(80%,0%);">&gt;</button>
+    </div>
+
+  </div> -->
+
+</div>
+
+
+
+<!-- <div class="restaurants-big-container" *ngIf="selectedOption === 'byrestaurant'">
+  <div *ngIf="restaurants ; norestaurants">
+    <div class="restaurant-container" *ngFor="let restaurant of restaurants">
+      <div class="logo">
+        <img src="./assets/{{restaurant.logo_path}}" height="150px" width="150px" style=" border-radius:1 ;">
+      </div>
+      <div class="name">
+        <h2>{{restaurant.user_name}}</h2>
+      </div>
+      <div class="btn">
+        <button name="viewLeftovers" (click)="goToRestaurant(restaurant.account_id)">View Leftovers</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #norestaurant>
+  <div class="no-restaurants">
+    <p>Sorry,there is no registered restaurants in your country right now. </p>
+  </div>
+</ng-template> -->
+
+<div class="restaurants-big-container" *ngIf="selectedOption === 'byrestaurant'">
+  <ng-container *ngIf="restaurants && restaurants.length > 0; else norestaurant">
+    <div class="restaurant-container" *ngFor="let restaurant of restaurants  let i = index"
+      [ngClass]="{'even': i % 2 === 0, 'odd': i % 2 !== 0}">
+      <div class="logo">
+        <img src="./assets/{{restaurant.logo_path}}" height="150px" width="150px">
+      </div>
+      <div class="name">
+        <h2 style="margin-top: -4px;">{{restaurant.user_name}}</h2>
+      </div>
+      <div class="address" style="color: white; text-align: center;margin-bottom: 10%;">
+        <span style="margin-top: 30px;">{{restaurant.city}}, {{restaurant.address}}</span>
+      </div>
+      <div class="btn">
+        <button name="viewLeftovers" (click)="goToRestaurant(restaurant.account_id)">View Leftovers</button>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #norestaurant>
+    <div class="no-restaurants">
+      <p>Sorry, there are no registered restaurants in your country right now.</p>
+    </div>
+  </ng-template>
+</div>
+<!-- <app-footer style="transform: translateY(10%);"></app-footer> -->

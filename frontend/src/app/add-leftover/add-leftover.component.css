@@ -1,0 +1,97 @@
+body {
+    /* background-image: linear-gradient(-90deg, #1e7792, #a39f5d); */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* height: 100vh; */
+  }
+  
+  #main {
+    /* background-color: #555; */
+    width: 90%; /* Adjust the width as needed */
+    max-width: 800px;
+    height: 500px; /* Set a maximum width to prevent the form from becoming too wide */
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 3px 5px 4px rgba(0,0,0,0.2);
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    
+  }
+  
+  #form-div {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 50%;
+    padding: 25px;
+    background-color: #fff;
+    height: auto; /* Remove fixed height to allow content to expand vertically */
+  }
+  
+  h3 {
+    text-align: center;
+    font-family: Freestyle Script;
+    /* color: #555; */
+    color: #157fbe;
+    letter-spacing: 1px;
+    font-size: 55px;
+    margin-top: 0px;
+  }
+  
+  button {
+    width: 100%; /* Make the button width 100% to fill the container */
+    color: white;
+    background-color:#157fbe;
+    border: none;
+    border-radius: 7px;
+    /* margin: 5px 0; Add some vertical margin */
+    /* margin-top: 20px; */
+    padding: 8px;
+  }
+  
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+  }
+  
+  .form-group{
+    margin:20px;
+  }
+  /* Adjust the width of the labels to a relative width */
+  label {
+    width: 30%; /* Adjust as needed */
+    color: #157fbe;
+    font-weight: bold;
+    /* background-color: aqua; */
+
+  }
+  
+  /* Adjust the width of the inputs */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    width: 70%; /* Adjust as needed */
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Hide the "No file chosen" text */
+  .form-group-file-input-group input[type="file"] {
+    width: 70%; /* Adjust as needed */
+    color: red;
+    margin: 20px;
+    
+  }
+  
+  .error-message{
+    color: red;
+    font-size: 0.8em; /* Adjust the font size to make the error messages smaller */
+    margin-left: 100px;
+    padding: 0  ;
+  }

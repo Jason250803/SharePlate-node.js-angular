@@ -1,0 +1,36 @@
+
+.main-container{ 
+    position: relative;
+    height: 592px;
+    /* background-image:Url("/assets/pic1.jpg");  */
+    background-repeat: no-repeat;
+    background-size:50%;
+    background-position: right;
+    /* background-color: blue;    */
+    padding-top: 0.1px; 
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+
+/* .halfback{
+   height:100%;
+   position:absolute;
+   background-color: yellow;
+}
+
+.back-img{
+    size-adjust: absolute;
+}
+.slogan{
+    background-position-x: left;
+    background-size: 50%;
+    background-color: aquamarine;
+    font-size: xx-large;
+} */

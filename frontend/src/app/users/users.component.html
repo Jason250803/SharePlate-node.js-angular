@@ -1,0 +1,106 @@
+<h2>List Of Restaurants </h2>
+<div *ngIf="restaurantsCount()> 0; else noRestaurantUsers">
+<table>
+
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Name</th>
+      <th>Email</th>
+      <!-- <th>Status</th> -->
+      <th>Phone</th>
+      <th>Country</th>
+      <th>City</th>
+
+      <!-- <th>License</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let restaurant of restaurantUsers" [ngStyle]="restaurant.status ===2 ?
+     {'background-color': '#808080','color':'white' } : {'background-color': 'none'}">
+      <ng-container *ngIf="restaurant.status === 1 || restaurant.status === 2">
+        <td><img src="./assets/{{ restaurant.logo_path}}"></td>
+        <td>{{restaurant.account_id}}</td>
+        <td>{{ restaurant.email }}</td>
+        <!-- <td>{{ restaurant.status }}</td> -->
+        <td>{{ restaurant.phone }}</td>
+        <td>{{ restaurant.country }}</td>
+        <td>{{ restaurant.city }}</td>
+        <!-- <td><img src="./assets/{{ restaurant.license_path }}"></td> -->
+
+        <td style="height: 90px;display: flex;justify-content: space-evenly;">
+          <!-- <button class="warning">Send Warning</button> -->
+          <button class="deactivate" *ngIf="restaurant.status ===1" (click)="deactivateUser(restaurant.account_id)">
+            Deactivate</button>
+
+          <button class="deactivate" *ngIf="restaurant.status ===2" (click)="activateUser(restaurant.account_id)"
+            style="background-color: #34a853;">Activate</button>
+          <button class="delete" (click)="deleteUser(restaurant.account_id)">Delete</button>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+
+</table>
+</div>
+<ng-template #noRestaurantUsers>
+  <div class="no-users-container">
+    <p class="no-users-message">No Registered Restaurants</p>
+  </div>
+</ng-template>
+
+
+<h2>List Of Organizations </h2>
+<div *ngIf="organizationsCount()> 0; else noOrganizationUsers">
+<table>
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Name</th>
+      <th>Email</th>
+      <!-- <th>Status</th> -->
+      <th>Phone</th>
+      <th>Country</th>
+      <th>City</th>
+
+      <!-- <th>License</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let organization of organizationUsers" [ngStyle]="organization.status ===2 ?
+     {'background-color': '#808080','color':'white' } : {'background-color': 'none'}">
+      <ng-container *ngIf="organization.status === 1 || organization.status === 2">
+        <td><img src="./assets/{{ organization.logo_path }}"></td>
+        <td>{{organization.user_name}}</td>
+        <td>{{ organization.email }}</td>
+        <!-- <td>{{ organization.status }}</td> -->
+        <td>{{ organization.phone }}</td>
+        <td>{{ organization.country }}</td>
+        <td>{{ organization.city }}</td>
+
+        <!-- <td><img src="./assets//{{ organization.license_path }}"></td> -->
+        <td style="height: 88px;display: flex;justify-content: space-evenly;">
+         
+          <button class="deactivate" *ngIf="organization.status ===1" (click)="deactivateUser(organization.account_id)">
+            Deactivate</button>
+
+          <button class="deactivate" *ngIf="organization.status ===2" (click)="activateUser(organization.account_id)"
+            style="background-color: #34a853;">Activate</button>
+          <button class="delete" (click)="deleteUser(organization.account_id)">Delete</button>
+        </td>
+
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
+</div>
+<ng-template #noOrganizationUsers>
+  <div class="no-users-container">
+    <p class="no-users-message">No Organization Requests.</p>
+  </div>
+</ng-template>
+<!-- <app-footer></app-footer> -->

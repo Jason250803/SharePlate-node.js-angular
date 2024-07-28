@@ -1,0 +1,45 @@
+<div class="navbar">
+    <div class="site-image">
+        <img [src]="source" height="150" width="320">
+    </div>
+     <div class="site-menu"  >  
+        <ul  *ngIf="isNormalUser()">
+            <li routerLinkActive="active"><a routerLink="/Home">HOME</a></li>
+            <!-- <li routerLinkActive="active"><a routerLink="Login">LOGIN</a></li> -->
+            <!-- <li routerLinkActive="'active'"><a routerLink="AddLeftover">Add Leftovers</a></li> -->
+            <li routerLinkActive="'active'"><a  routerLink="SignUp">Sign Up</a></li>
+            <li routerLinkActive="'active'"><a  routerLink="Feedbacks">Feedbacks</a></li>
+            <li routerLinkActive="'active'"><a routerLink="About">ABOUT US</a></li>
+            <!-- <li><button (click)="logout()">Logout</button></li> -->
+
+        </ul>
+        <ul *ngIf="isOrganization()">
+            <li routerLinkActive="active"><a routerLink="/Home">HOME</a></li>
+            <li routerLinkActive="active"><a routerLink="/Profile">Profile</a></li>
+            <li routerLinkActive="active"><a routerLink="/ViewLeftovers">Leftovers</a></li>
+            <li routerLinkActive="active"><a routerLink="/Basket">Basket</a></li>
+            <li routerLinkActive="active"><a routerLink="/Reservations">Reseervations</a></li>
+            <li routerLinkActive="active"><a routerLink="/Feedbacks">Feedbacks</a></li>
+            <li><button (click)="logout()">Logout</button></li>
+        </ul>
+        <ul *ngIf="isRestaurant()">
+            <li routerLinkActive="active"><a routerLink="/Home">Home</a></li>
+            <li routerLinkActive="active"><a routerLink="/Profile">Profile</a></li>
+            <li routerLinkActive="active"><a routerLink="/AddLeftover"> AddLeftovers</a></li>
+            <li routerLinkActive="active"><a routerLink="/ManageLeftovers">ManageLeftovers</a></li>
+            <li routerLinkActive="active"><a routerLink="/ReservationCalendar">Schedule</a></li>
+            <li routerLinkActive="active"><a routerLink="/Feedbacks">Feedbacks</a></li>
+            <li><button (click)="logout()">Logout</button></li>
+
+
+        </ul>
+        <ul *ngIf="isAdmin()">
+            <li routerLinkActive="active"><a routerLink="/Home">Home</a></li>
+            <li routerLinkActive="active"><a routerLink="/Dashboard">Requests</a></li>
+            <li routerLinkActive="active"><a routerLink="/Users"> Users</a></li>
+            <li routerLinkActive="active"><a routerLink="/Feedbacks">Feedbacks</a></li>
+            <li><button (click)="logout()">Logout</button></li>
+
+        </ul>
+    </div>
+</div>
